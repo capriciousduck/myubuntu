@@ -1,7 +1,8 @@
 name: Ubuntu
 
 on:
-  workflow_dispatch
+  schedule:
+    - cron: "30 1 * * *" # In UTC ( 7 AM IST)
 
 jobs:
   myubuntu:

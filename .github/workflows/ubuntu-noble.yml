@@ -7,6 +7,11 @@ jobs:
   myubuntu:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          branch: master
+      
       - name: Build and Push
         run: |
           docker login -u capriciousduck -p "${{ secrets.DOCKER_HUB_PASSWORD }}"

@@ -1,4 +1,6 @@
-FROM ubuntu:noble
+ARG distro
+
+FROM ubuntu:${distro}
 
 RUN  apt update \
     && apt install -y \

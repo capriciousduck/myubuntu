@@ -10,9 +10,15 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
       
-      - name: Build and Push
+      - name: Build and Push Noble
         run: |
           docker login -u capriciousduck -p "${{ secrets.DOCKER_HUB_PASSWORD }}"
-          docker build --build-arg distro=noble -f Dockerfile.noble -t capriciousduck/myubuntu:noble .
+          docker build --build-arg distro=noble -t capriciousduck/myubuntu:noble .
           docker push capriciousduck/myubuntu:noble
+
+      - name: Build and Push Jammy
+        run: |
+          docker login -u capriciousduck -p "${{ secrets.DOCKER_HUB_PASSWORD }}"
+          docker build --build-arg distro=jammy -t capriciousduck/myubuntu:jammy .
+          docker push capriciousduck/myubuntu:jammy
       

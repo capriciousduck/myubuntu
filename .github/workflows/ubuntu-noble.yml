@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Build and Push
         run: |
-          docker login -u capriciousduck -p "{{ secrets.DOCKER_HUB_PASSWORD }}"
+          docker login -u capriciousduck -p "${{ secrets.DOCKER_HUB_PASSWORD }}"
           docker build -f Dockerfile.noble -t capriciousduck/myubuntu:noble .
           docker push capriciousduck/myubuntu:noble
       

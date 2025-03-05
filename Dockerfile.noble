@@ -1,0 +1,10 @@
+FROM ubuntu:noble
+RUN  apt update \
+    && apt install \
+       tmux \
+       curl \
+       wget \
+       htop \
+       unrar \
+    && apt autoremove \
+    && apt clean

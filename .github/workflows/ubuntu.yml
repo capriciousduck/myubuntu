@@ -22,4 +22,5 @@ jobs:
           docker login -u capriciousduck -p "${{ secrets.DOCKER_HUB_PASSWORD }}"
           docker build --build-arg distro=jammy -t capriciousduck/myubuntu:jammy .
           docker push capriciousduck/myubuntu:jammy
+
       

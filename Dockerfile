@@ -9,5 +9,6 @@ RUN  apt update \
        wget \
        htop \
        unrar \
+       nano \
     && apt autoremove \
     && apt clean

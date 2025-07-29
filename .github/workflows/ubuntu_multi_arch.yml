@@ -3,7 +3,7 @@ name: Build and Push Multi-Arch Docker Image
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
   schedule:
     - cron: "30 1 * * *" # In UTC ( 7 AM IST)

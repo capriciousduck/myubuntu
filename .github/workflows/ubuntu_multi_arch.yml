@@ -1,0 +1,50 @@
+name: Build and Push Multi-Arch Docker Image
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "30 1 * * *" # In UTC ( 7 AM IST)
+
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push myubuntu:noble and myimage:noble
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            distro=noble
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: |
+            capriciousduck/myubuntu:noble
+
+      - name: Build and push myubuntu:jammy
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          build-args: |
+            distro=jammy
+          platforms: linux/arm64,linux/amd64
+          push: true
+          tags: |
+            capriciousduck/myubuntu:jammy

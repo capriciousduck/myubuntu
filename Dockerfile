@@ -12,3 +12,5 @@ RUN  apt update \
        nano \
     && apt autoremove \
     && apt clean
+
+CMD ["bash"]

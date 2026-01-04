@@ -10,7 +10,8 @@ RUN  apt update \
        htop \
        unrar \
        nano \
-    && apt autoremove \
-    && apt clean
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean \
+    && rm -rf /tmp/* /var/tmp/*
 
 CMD ["bash"]
